@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -37,6 +38,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $datosUsuario=request()->except('_token');
+        //dd("datos",$datosUsuario);
+        $datosUsuario["password"]=Hash::make($datosUsuario["password"]);
         User::insert($datosUsuario);
         return redirect('usuarios');
     }
