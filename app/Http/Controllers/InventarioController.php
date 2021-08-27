@@ -36,6 +36,13 @@ class InventarioController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'cantidad'=>'required|min:1|max:5',
+            'tipo'=>'required',
+            'estado'=>'required',
+            'fecha'=>'required'
+        ]);
         $datosInventario=request()->except('_token');
         Inventario::insert($datosInventario);
         return redirect('inventarios');

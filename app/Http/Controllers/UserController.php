@@ -38,7 +38,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $datosUsuario=request()->except('_token');
-        //dd("datos",$datosUsuario);
         $datosUsuario["password"]=Hash::make($datosUsuario["password"]);
         User::insert($datosUsuario);
         return redirect('usuarios');
