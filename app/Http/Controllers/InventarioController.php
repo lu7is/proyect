@@ -39,9 +39,9 @@ class InventarioController extends Controller
 
         $request->validate([
             'cantidad'=>'required|min:1|max:5',
-            'tipo'=>'required',
-            'estado'=>'required',
-            'fecha'=>'required'
+            'tipo'=>'required|max:5',
+            'estado'=>'required|min:1|max:5',
+            'fecha'=>'required|min:1|max:5'
         ]);
         $datosInventario=request()->except('_token');
         Inventario::insert($datosInventario);
