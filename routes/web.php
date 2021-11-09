@@ -27,6 +27,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/Index', function () {
+    return view('Index');
+})->name('Index');
+
 
 Route::middleware(['auth:sanctum','verified'])->resource('inventarios',InventarioController::class);
 Route::middleware(['auth:sanctum','verified'])->resource('bodegas',BodegaController::class);
