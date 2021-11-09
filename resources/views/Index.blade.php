@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Index</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
@@ -46,7 +46,7 @@
         <div class="row">
             <div class="barra-lateral col-12 col-sm-auto">
                 <nav class="menu d-flex d-sm-block justify-content-center flex-wrap">
-                    <a href="{{ route('dash') }}"><i class="fas fa-home"></i><span>Inicio</span></a>
+                    <a href="{{ route('Ind') }}"><i class="fas fa-home"></i><span>Inicio</span></a>
                     <a href="{{ route('usuarios.index') }}"><i class="fas fa-address-card"></i><span>Usuarios</span></a>
                     <a href="{{ route('bodegas.index') }}"><i class="fas fa-archive"></i><span>Bodegas</span></a>
                     <a href="{{ route('inventarios.index') }}"><i class="fas fa-chart-bar"></i><span>Inventarios</span></a>

@@ -20,16 +20,16 @@ use App\Http\Controllers\PedidoController;
 */
 
 Route::get('/', function () {
-    return view('auth.Login');
+    return view('PaginaPrincipal');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/Index', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/Ind', function () {
     return view('Index');
-})->name('Index');
+})->name('Ind');
 
 
 Route::middleware(['auth:sanctum','verified'])->resource('inventarios',InventarioController::class);
