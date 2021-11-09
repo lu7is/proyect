@@ -66,8 +66,14 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function setPasswordAttribute($value)
+  
+
+    public function usuario()
     {
-        $this->attributes["password"]=Hash::make($value);
+       return $this->hasMany(User::class);
     }
+
+
+
+
 }
