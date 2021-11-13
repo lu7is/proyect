@@ -23,13 +23,18 @@ Route::get('/', function () {
     return view('PaginaPrincipal');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/Ind', function () {
+ Route::middleware(['auth:sanctum', 'verified'])->get('/Ind', function () {
     return view('Index');
 })->name('Ind');
+
+
+
+
+
 
 
 Route::middleware(['auth:sanctum','verified'])->resource('inventarios',InventarioController::class);

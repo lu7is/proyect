@@ -13,6 +13,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        //$this->middleware('auth');
+        //$this->middleware('administrador',['only'=>['index']]);
+    }
+
     public function index()
     {
         $datos['usuarios']=User::paginate(5);
