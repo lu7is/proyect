@@ -7,11 +7,11 @@
 
    
     
-    <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+    <div >
+            <div >
+                <div >
                    
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
+                  <div >
 
 
                   
@@ -59,8 +59,9 @@
             </div>
             <input class="btn btn-primary" type="submit" value="{{$modo}} datos">
                
+            <a href="{{url('asistencias/')}}" class="btn btn-warning">Cancelar</a>
             
-                     <a href="{{url('asistencias/')}}">Cancelar</a>
+                    
         </div>
      </div>
     

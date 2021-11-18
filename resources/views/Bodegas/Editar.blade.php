@@ -1,20 +1,16 @@
+@extends('Index')
 
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Editar Datos') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-            <form action="{{url('/bodegas/'.$bodegas->id)}}" method="post">
+  
+@section('Contenido')
+    <div class=>
+        <div class=>
+            <div >
+            <form action="{{url('/bodegas/'.$bodegas->id)}}" method="post" >
                 @csrf
                 {{method_field('PATCH')}}
 
-                <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div >
+            <div class=>
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                    
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
@@ -75,5 +71,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
 
+    @endsection

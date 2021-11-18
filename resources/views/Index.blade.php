@@ -58,12 +58,11 @@
             <main class="main col">
                 <div class="row justify-content-center align-content-center text-center">
                     <div class="columna col-lg-6">
-                        CONTENIDO
-                        fdfdfd
+                       
                     </div>
-
+                
                 </div>
-
+                @yield('Contenido')
             </main>
         </div>
     </div>

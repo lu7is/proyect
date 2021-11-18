@@ -3,19 +3,6 @@
       <center>
       <h1>{{$modo}} Inventario</h1>
       </center>
-   
-    
-   
-
-   
-
-    <div class="py-12">
-
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                   
-              
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
                 
                      <div class="grid grid-cols-1">
                         <label class="uppercase md:text-sm text-xs text-gray-500 text-light font-semibold">Cantidad</label>
@@ -45,18 +32,8 @@
                          <small>*{{$message}}</small>
                        @enderror
                      </div>
+            <input class="btn btn-success" type="submit" value="Registrar"/>
                      
-
-                  </div>
-                  
-                  
-                
-            </div><br>
-            <x-jet-button class="ml-4">
-            {{ __('Registrar') }}
-             </x-jet-button>
-            <input class="card-footer ml-auto mr-auto" type="submit" value=""/>
-                     
-                     <a href="{{url('inventarios/')}}">Cancelar</a>
-        </div>
-     </div>
+                     <a href="{{url('inventarios/')}}" class="btn btn-warning">Cancelar</a>
+       
+     

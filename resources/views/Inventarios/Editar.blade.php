@@ -1,10 +1,8 @@
 
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Inicio') }}
-        </h2>
-    </x-slot>
+@extends('Index')
+
+@section('Contenido')
+   
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -46,10 +44,10 @@
                   
                 
             </div><br>
-            <x-jet-button class="ml-4">
+           
             {{ __('Registrar') }}
-             </x-jet-button>
-            <input class="card-footer ml-auto mr-auto" type="submit" value=""/>
+            
+            <input class="btn btn-success" type="submit" value="Registrar "/>
                      
                      <a href="{{url('inventarios/')}}">Cancelar</a>
         </div>
@@ -58,5 +56,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
 

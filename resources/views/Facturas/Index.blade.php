@@ -1,28 +1,26 @@
+@extends('Index')
 
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Facturas') }}
-        </h2>
-    </x-slot>
-    <a href="{{url('facturas/create')}}" class="btn btn-success">Registrar Nueva Factura</a>
+@section('Contenido')
+
     
-    <div class="py-22">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+    <a href="{{url('facturas/create')}}" class="btn btn-success">Registrar Nueva Factura</a>
+    <br><br>
+    <div >
+            <div >
+                <div >
             
-            <br><br>
-            <table class="rounded-t-lg mt-5 min-w-full mx-auto bg-white-1000 text-gray-100">
-                <thead class="thead-inverse">
-                <tr  class="text-left border-b border-gray-300">
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider">Id</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider">Cantidad</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider">Descripcion</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider">Precio_Unitario</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider">Total</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider">Fecha</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider">Cliente</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-100 uppercase tracking-wider">Acciones</th>
+            
+            <table class="table">
+                <thead class="table-dark">
+                <tr  >
+                    <th scope="col" >Id</th>
+                    <th scope="col" >Cantidad</th>
+                    <th scope="col" >Descripcion</th>
+                    <th scope="col" >Precio_Unitario</th>
+                    <th scope="col" >Total</th>
+                    <th scope="col" >Fecha</th>
+                    <th scope="col" >Cliente</th>
+                    <th scope="col" >Acciones</th>
                 </tr>
                 </thead>
         <tbody>
@@ -38,7 +36,7 @@
                 <td>{{$fact->user_id}}</td>
                 <td>
 
-                <a href="{{url('/facturas/'.$fact->id.'/edit')}}">
+                <a href="{{url('/facturas/'.$fact->id.'/edit')}}" class="btn btn-warning">
                     Editar
                 </a>
 
@@ -46,7 +44,7 @@
                 <form action="{{url('/facturas/'.$fact->id)}}"method="post" class="d-inline">
                 @csrf
                 {{method_field('DELETE')}}
-                <input type="submit" onclick="return confirm('Deseas Eliminar Este Registro?')" value="Eliminar">
+                <input type="submit" onclick="return confirm('Deseas Eliminar Este Registro?')" value="Eliminar" class="btn btn-danger">
             
             
             
@@ -64,7 +62,7 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
 
 
 

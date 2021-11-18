@@ -1,3 +1,6 @@
+@extends('Index')
+
+@section('Contenido')
 
 
 <center>
@@ -96,4 +99,4 @@
                      
         </div>
      </div>
-    
+    @endsection

@@ -1,5 +1,7 @@
 
-<x-app-layout>
+@extends('Index')
+
+@section('Contenido')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Editar Usuarios') }}
@@ -107,5 +109,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
 
