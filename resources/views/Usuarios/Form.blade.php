@@ -4,18 +4,11 @@
 
 
 <center>
-<h1>{{$modo}} Usuarios</h1>
 
+    <h1>estamos en el form</h1>
 </center>
  
-    
-   
-
-   
-    
-    <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{url('/usuarios')}}">
             @csrf
 
             <div class="mt-4">
@@ -45,7 +38,7 @@
 
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full  " type="email" name="email" :value="old('email')" required />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
             <div class="mt-4">
@@ -58,45 +51,16 @@
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
-          
 
             <div class="mt-4">
-                <x-jet-label for="rol" value="Rol" />
+                <x-jet-label for="rol" value="rol" />
                 <x-jet-input id="rol" class="block mt-1 w-full" type="text" name="rol"  required />
             </div>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-jet-label for="terms">
-                        <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms"/>
-
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
-                        </div>
-                    </x-jet-label>
-                </div>
-            @endif
-
-            <div class="flex items-center justify-end mt-4">
-                
-
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
-
-                <x-jet-button class="ml-4">
-                <a href="{{url('usuarios/')}}">Cancelar</a>
-                </x-jet-button>
-                
-            </div>
+              <input type="submit" value="registrar">
+           
         </form>
-            
+    
                      
-        </div>
-     </div>
+    
     @endsection

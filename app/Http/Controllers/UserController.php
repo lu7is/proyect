@@ -31,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('Usuarios.Registrar');
+        return view('Usuarios.Form');
     }
 
     /**

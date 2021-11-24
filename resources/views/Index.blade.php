@@ -15,7 +15,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center align-content-center">
             <div class="col-8 barra">
-                <h4 class="text-light">Logo</h4>
+                <h4 class="text-light">Meraki_Brand</h4>
             </div>
             
             <div class="col-4 text-right barra">
@@ -28,9 +28,9 @@
                                 @csrf
                         <div class="dropdown-menu" aria-labelledby="navbar-dropdown">
                             <a class="dropdown-item menuperfil cerrar" href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                this.closest('form').submit();"><i class="fas fa-sign-out-alt m-1"></i>Salir
+                                                this.closest('form').submit();"><i class="fas fa-sign-out-alt m-1"></i>Cerrar Sesion
                             </a>
-                            <a class="dropdown-item menuperfil cerrar" href="{{ route('logout') }}"><i class="fas fa-android m-1"></i>Ver Perfil
+                            <a class="dropdown-item menuperfil cerrar" href="{{ route('profile.show') }}"><i class="fas fa-android m-1"></i>Ver Perfil
                             </a>
                            
                         </div>
