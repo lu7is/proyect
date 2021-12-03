@@ -53,6 +53,7 @@
                     <a href="{{ route('pedidos.index') }}"><i class="fas fa-calendar"></i><span>Pedidos</span></a>
                     <a href="{{ route('facturas.index') }}"><i class="fas fa-calculator"></i><span>Facturas</span></a>
                     <a href="{{ route('asistencias.index') }}"><i class="fas fa-child"></i><span>Asistencias</span></a>
+                    <a href="{{ route('roles.index') }}"><i class="fas fa-child"></i><span>Roles</span></a>
                 </nav>
             </div>
             <main class="main col">

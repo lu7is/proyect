@@ -3,8 +3,10 @@
 
 @section('Contenido')
     
+<h3 class="text-center">Usuarios Registrados</h3>
     <a href="{{url('usuarios/create')}}" class="btn btn-success">Registrar Nuevo Usuario</a>
     <br><br>
+    
     <div >
             <div>
                 <div >
@@ -38,7 +40,14 @@
                 <td>{{$usu->email}}</td>
                 <td>{{$usu->direccion}}</td>
                
-                <td>{{$usu->Rol}}</td>
+                <td>
+                    @if(!empty($usu->getRoleNames()))
+                         @foreach($usu->getRoleNames() as $rolName)
+                            {{$rolName}}
+                         @endforeach
+
+                    @endif
+                </td>
                 <td>
 
                 <a href="{{url('/usuarios/'.$usu->id.'/edit')}}" class="btn btn-warning">

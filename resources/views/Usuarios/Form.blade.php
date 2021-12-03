@@ -7,59 +7,89 @@
 
     <h1>estamos en el form</h1>
 </center>
- 
-        <form method="POST" action="{{url('/usuarios')}}">
-            @csrf
+        @if($errors->any())
+            <div class="alert alert-dark alert-dismissible fade show" role="alert">
+                <strong>¡Revise los Campos</strong>
+                @foreach($errors->all() as $error)
+                    <span class="badge badge-danger">{{$error}}</span>
+                @endforeach
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+         @endif
 
-            <div class="mt-4">
-                <x-jet-label for="cedula" value="cedula" />
-                <x-jet-input id="cedula" class="block mt-1 w-full" type="number" name="cedula"  required />
+
+        
+         {!! Form::open(array('route'=>'usuarios.store','method'=>'POST')) !!}
+         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <div class="form-group">
+                    <label for="cedula">Cedula</label>
+                    {!! Form::number('cedula',null,array('class'=>'form-control'))!!}
+                </div>
             </div>
 
-            <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    {!! Form::text('nombre',null,array('class'=>'form-control'))!!}
+                </div>
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="apellido" value="apellido" />
-                <x-jet-input id="apellido" class="block mt-1 w-full" type="text" name="apellido"  required />
+            <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    {!! Form::text('apellido',null,array('class'=>'form-control'))!!}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <div class="form-group">
+                    <label for="celular">Celular</label>
+                    {!! Form::number('celular',null,array('class'=>'form-control'))!!}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <div class="form-group">
+                    <label for="telefono">Telefono</label>
+                    {!! Form::number('telefono',null,array('class'=>'form-control'))!!}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <div class="form-group">
+                    <label for="correo">Correo</label>
+                    {!! Form::email('correo',null,array('class'=>'form-control'))!!}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <div class="form-group">
+                    <label for="direccion">Dirección</label>
+                    {!! Form::text('direccion',null,array('class'=>'form-control'))!!}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    {!! Form::password('password',null,array('class'=>'form-control'))!!}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <div class="form-group">
+                    <label for="cedula">Roles</label>
+                        {!! Form::select('usuarios[]', $usuarios,[], array('class'=> 'form-control'))!!}
+                 </div>
+             </div>
+             <div class="col-xs-12 col-sm-12 col-md-12 ">
+                <button type="submit" class="btn btn-primary">Registrar</button>
             </div>
 
-            <div class="mt-4">
-                <x-jet-label for="celular" value="celular" />
-                <x-jet-input id="celular" class="block mt-1 w-full" type="number" name="celular"  required />
-            </div>
+         </div>
+         {!! Form::close() !!}
+            
 
-            <div class="mt-4">
-                <x-jet-label for="telefono" value="telefono" />
-                <x-jet-input id="telefono" class="block mt-1 w-full" type="number" name="telefono"  required />
-            </div>
+            
 
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="direccion" value="direccion" />
-                <x-jet-input id="direccion" class="block mt-1 w-full" type="text" name="direccion"  required />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
-
-
-            <div class="mt-4">
-                <x-jet-label for="rol" value="rol" />
-                <x-jet-input id="rol" class="block mt-1 w-full" type="text" name="rol"  required />
-            </div>
-
-              <input type="submit" value="registrar">
-           
-        </form>
+            
     
                      
     

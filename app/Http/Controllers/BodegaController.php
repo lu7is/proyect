@@ -7,6 +7,17 @@ use Illuminate\Http\Request;
 
 class BodegaController extends Controller
 {
+    function __construct(){
+        $this-middleware('permission:ver-bodega | crear-bodega | editar-bodega | borrar-bodega',['only'=>['index']]);
+        $this-middleware('permission:crear-bodega',['only'=>['create','store']]);
+        $this-middleware('permission:editar-bodega',['only'=>['edit','update']]);
+        $this-middleware('permission:borrar-bodega',['only'=>['destroy']]);
+    }
+
+
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +25,11 @@ class BodegaController extends Controller
      */
     public function index()
     {
-        $datos['bodegas']=Bodega::paginate(5);
-        return view('Bodegas.Index',$datos);
+       // $datos['bodegas']=Bodega::paginate(5);
+        //return view('Bodegas.Index',$datos);
+
+        $bodega = Bodega::paginate(5);
+        return view('Bodegas.Index', compact('bodega'));
     }
 
     /**
@@ -37,9 +51,23 @@ class BodegaController extends Controller
      */
     public function store(Request $request)
     {
-       $datosBodega=request()->except('_token');
-       Bodega::insert($datosBodega);
-       return redirect('bodegas');
+      // $datosBodega=request()->except('_token');
+
+      // Bodega::insert($datosBodega);
+
+       //return redirect('bodegas');
+       request()->validate([
+        'estado'=>'required',
+        'num_remi'=>'required',
+        'tipo'=>'required',
+        'cantidad'=>'required',
+        'descripcion'=>'required',
+        'fecha_in'=>'required',
+        'fecha_out'=>'required'
+       ]);
+       Bodega::create($request->all());
+            return redirect()->route('bodegas.index');
+
     }
 
     /**
@@ -59,9 +87,9 @@ class BodegaController extends Controller
      * @param  \App\Models\Bodega  $bodega
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Bodegas $bodegas)
     {
-        $bodegas=Bodega::findOrfail($id);
+       // $bodegas=Bodega::findOrfail($id);
         return view('Bodegas.Editar',compact('bodegas'));
     }
 
@@ -72,10 +100,21 @@ class BodegaController extends Controller
      * @param  \App\Models\Bodega  $bodega
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, Bodegas $bodegas)
     {
-        $datosBodega=request()->except(['_token','_method']);
-        Bodega::where('id','=',$id)->update($datosBodega);
+        request()->validate([
+            'estado'=>'required',
+            'num_remi'=>'required',
+            'tipo'=>'required',
+            'cantidad'=>'required',
+            'descripcion'=>'required',
+            'fecha_in'=>'required',
+            'fecha_out'=>'required'
+           ]);
+
+       // $datosBodega=request()->except(['_token','_method']);
+       // Bodega::where('id','=',$id)->update($datosBodega);
+           $bodega->update($request->all());
         return redirect('bodegas');
     }
 
@@ -85,9 +124,12 @@ class BodegaController extends Controller
      * @param  \App\Models\Bodega  $bodega
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Bodegas $bodegas)
     {
-        Bodega::destroy($id);
-        return redirect('bodegas');
+       // Bodega::destroy($id);
+      // return redirect('bodegas');
+
+      $bodega->delete();
+      return redirect()->route('bodegas.index');
     }
 }

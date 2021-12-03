@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
@@ -13,10 +15,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(){
-        //$this->middleware('auth');
-        //$this->middleware('administrador',['only'=>['index']]);
-    }
+    
 
     public function index()
     {
@@ -31,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('Usuarios.Form');
+        $usuarios= Role::pluck('name','name')->all();
+        return view('Usuarios.Form',compact('usuarios'));
     }
 
     /**
@@ -42,10 +42,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $datosUsuario=request()->except('_token');
+        $this->validate($request,[
+            'cedula'=>'required|cedula|unique:users,cedula',
+            'name'=>'required',
+            'apellido'=>'required',
+            'celular'=>'required',
+            'telefono'=>'required',
+            'email'=>'required',
+            'direccion'=>'required',
+            'password'=>'required',
+            'Rol'=>'required'
+        ]);
+
+        $datosUsuario=$request->all()->except('_token');
         $datosUsuario["password"]=Hash::make($datosUsuario["password"]);
-        User::insert($datosUsuario);
-        return redirect('usuarios');
+
+        $user=User::create($datosUsuario);
+        $user->assignRole($request->datosUsuario('roles'));
+        return redirect()->route('usuarios.index');
     }
 
     /**
@@ -67,8 +81,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $usuarios=User::findOrfail($id);
-        return view('Usuarios.Editar',compact('usuarios'));
+        $usuarios=User::find($id);
+        $rol = Role::pluck('name','name')->all();
+        $usuRol = $usuarios->rol->pluck('name','name')->all();
+
+        return view('Usuarios.Editar',compact('usuarios','rol','usuRol'));
     }
 
     /**
@@ -80,7 +97,31 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'cedula'=>'required|cedula|unique:users,cedula',
+            'name'=>'required',
+            'apellido'=>'required',
+            'celular'=>'required',
+            'telefono'=>'required',
+            'email'=>'required'.$id,
+            'direccion'=>'required',
+            'password',
+            'Rol'=>'required'
+        ]);
+
+        $input = $request->all();
+        if(!empty($input['password'])){
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input = Arr::except($input, array('password'));
+        }
+        $user = User::find($id);
+        $user->update($input);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        
+        $user->assignRole($request->input('roles'));
+        return redirect()->route('usuarios.index');
+
     }
 
     /**
@@ -91,6 +132,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        return rediect()->route('usuarios.index');
     }
 }
